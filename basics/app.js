@@ -1,45 +1,27 @@
+"use strict";
 // class User {
 //   name: string;
 //   private age: number;
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
-var User = /** @class */ (function () {
-    function User(name, age) {
+class User {
+    constructor(name, age) {
         this.name = name;
         this.age = age;
     }
-    User.prototype.print = function () {
+    print() {
         console.log(this.name);
-    };
-    return User;
-}());
-var Admin = /** @class */ (function (_super) {
-    __extends(Admin, _super);
-    function Admin(name, age, permissions) {
-        var _this = _super.call(this, name, age) || this;
-        _this.permissions = permissions;
-        return _this;
     }
-    return Admin;
-}(User));
-var user = new User("Max", 30);
+}
+class Admin extends User {
+    constructor(name, age, permissions) {
+        super(name, age);
+        this.permissions = permissions;
+    }
+}
+const user = new User("Max", 30);
 console.log(user.name);
-var numOneInput = document.getElementById("num1");
-var numTwoInput = document.getElementById("num2");
-var buttonEl = document.querySelector("button");
+const numOneInput = document.getElementById("num1");
+const numTwoInput = document.getElementById("num2");
+const buttonEl = document.querySelector("button");
 function add(a, b) {
     return a + b;
 }
@@ -56,15 +38,15 @@ function printResult(result, printMode) {
         alert(result);
     }
 }
-var results = [];
-var names = ["George"];
-buttonEl === null || buttonEl === void 0 ? void 0 : buttonEl.addEventListener("click", function () {
-    var num1 = +numOneInput.value;
-    var num2 = +numTwoInput.value;
-    var result = add(num1, num2);
-    var resultContainer = {
+let results = [];
+const names = ["George"];
+buttonEl === null || buttonEl === void 0 ? void 0 : buttonEl.addEventListener("click", () => {
+    const num1 = +numOneInput.value;
+    const num2 = +numTwoInput.value;
+    const result = add(num1, num2);
+    const resultContainer = {
         res: result,
-        print: function () {
+        print() {
             console.log(this.res);
         },
     };
@@ -73,3 +55,8 @@ buttonEl === null || buttonEl === void 0 ? void 0 : buttonEl.addEventListener("c
     printResult(result, OutputMode.CONSOLE);
     printResult(result, OutputMode.ALERT);
 });
+function logAndEcho(val) {
+    console.log(val);
+    return val;
+}
+logAndEcho("Hi there").split(" ");
